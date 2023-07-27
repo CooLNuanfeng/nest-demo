@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { CatsController } from './cats.controller';
 import { CatsService } from './cats.service';
 import { ConfigModule } from 'src/config/config.module';
-import { ConfigService } from 'src/config/config.service';
+import { UserModule } from 'src/user/user.module';
 
 @Module({
-  imports: [ConfigModule.register({ folder: './configs' })],
+  imports: [UserModule, ConfigModule.register({ folder: './configs' })],
   controllers: [CatsController],
   providers: [CatsService],
   exports: [CatsService],
