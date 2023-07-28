@@ -4,6 +4,7 @@ import {
   RequestMethod,
   MiddlewareConsumer,
 } from '@nestjs/common';
+// import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
@@ -15,13 +16,18 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
+import { LazyModule } from './lazy/lazy.module';
 
 @Module({
   imports: [
     CatsModule,
     AuthModule,
-    ConfigModule.register({ folder: './configs' }),
     UserModule,
+    LazyModule,
+    ConfigModule.register({ folder: './configs' }),
+    // DevtoolsModule.register({
+    //   http: process.env.NODE_ENV !== 'production',
+    // }),
   ],
   controllers: [AppController, UserController],
   providers: [

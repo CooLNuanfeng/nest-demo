@@ -12,6 +12,7 @@ import {
   UseFilters,
   UseGuards,
   ForbiddenException,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CreateCatDto, createCatSchema } from './dto/create-cat.dto';
@@ -24,9 +25,13 @@ import { RolesGuard } from '../roles/roles.guard';
 import { Public } from '../auth/public.decorator';
 import { Request } from 'express';
 import { AuthGuard } from '../auth/auth.guard';
+import { LogDateInterceptor } from 'src/log-date/log-date.interceptor';
+import { TransformInterceptor } from './transform.interceptor';
 
 @Controller('cats')
 @UseGuards(RolesGuard)
+@UseInterceptors(LogDateInterceptor)
+@UseInterceptors(TransformInterceptor)
 export class CatsController {
   constructor(private catsService: CatsService) {}
 
