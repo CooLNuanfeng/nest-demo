@@ -56,8 +56,9 @@ export class CatsController {
   @Get('/byId')
   @Roles(Role.User) //仅 user 角色可以访问
   @UseGuards(AuthGuard)
-  async findOne(@Query('id', ParseIntPipe) id: number) {
+  async findOne(@Query('id') id: string) {
     console.log(typeof id);
+    console.log(id);
     // throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     return this.catsService.findOne(id);
   }

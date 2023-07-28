@@ -43,14 +43,13 @@ export class RolesGuard implements CanActivate {
       [context.getHandler(), context.getClass()],
     );
     console.log('requireRoles==>', requireRoles);
-    if (!requireRoles || requireRoles.includes(Role.Admin)) {
-      //不存在或admin角色都可以放行
-      return true;
-    }
-
     const request = context.switchToHttp().getRequest();
     const user = request.user;
     console.log('user', user);
+    if (!requireRoles || user?.roles?.includes(Role.Admin)) {
+      //不存在或admin角色都可以放行
+      return true;
+    }
     return requireRoles.some((role) => user.roles?.includes(role));
   }
 }

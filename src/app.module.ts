@@ -18,6 +18,8 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
 import { LazyModule } from './lazy/lazy.module';
 
+import { MongooseModule } from '@nestjs/mongoose';
+
 @Module({
   imports: [
     CatsModule,
@@ -25,6 +27,7 @@ import { LazyModule } from './lazy/lazy.module';
     UserModule,
     LazyModule,
     ConfigModule.register({ folder: './configs' }),
+    MongooseModule.forRoot('mongodb://localhost:27017/nest'),
     // DevtoolsModule.register({
     //   http: process.env.NODE_ENV !== 'production',
     // }),
