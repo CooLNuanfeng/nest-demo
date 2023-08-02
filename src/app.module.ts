@@ -17,17 +17,21 @@ import { UserModule } from './user/user.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
 import { LazyModule } from './lazy/lazy.module';
-
+import { ScheduleModule } from '@nestjs/schedule';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ApiModule } from './api/api.module';
+import { TaskService } from './task/task.service';
 
 @Module({
   imports: [
-    CatsModule,
+    // CatsModule,
     AuthModule,
     UserModule,
     LazyModule,
+    ApiModule,
+    ScheduleModule.forRoot(),
     ConfigModule.register({ folder: './configs' }),
-    MongooseModule.forRoot('mongodb://localhost:27017/nest'),
+    // MongooseModule.forRoot('mongodb://localhost:27017/nest'),
     // DevtoolsModule.register({
     //   http: process.env.NODE_ENV !== 'production',
     // }),
@@ -40,6 +44,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     },
     AppService,
     UserService,
+    TaskService,
   ],
 })
 export class AppModule implements NestModule {

@@ -19,6 +19,11 @@ export class TransformInterceptor<T>
     context: ExecutionContext,
     next: CallHandler,
   ): Observable<Response<T>> {
+    const response = context.switchToHttp().getResponse();
+    console.log(next.handle());
+    // response.json({
+    //   data: {},
+    // });
     return next.handle().pipe(map((data) => ({ data })));
   }
 }

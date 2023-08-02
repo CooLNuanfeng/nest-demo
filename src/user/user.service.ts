@@ -27,6 +27,11 @@ export class UserService {
     return this.users.find((user) => user.username === username);
   }
 
+  taskFn() {
+    console.log('taskFn');
+    return 'taskFn';
+  }
+
   setA(value: string) {
     this.scopeA = value;
   }
