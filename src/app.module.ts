@@ -21,6 +21,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ApiModule } from './api/api.module';
 import { TaskService } from './task/task.service';
+import { EventGateway } from './event/event.gateway';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { TaskService } from './task/task.service';
     AppService,
     UserService,
     TaskService,
+    EventGateway,
   ],
 })
 export class AppModule implements NestModule {
